@@ -4,6 +4,9 @@ import 'dotenv/config';
 // Bring in Express
 import express from 'express';
 
+// Import our database connection
+import connectDB from './db/connection.js';
+
 // Create our Express app
 const app = express();
 
@@ -17,6 +20,9 @@ const port = 3013;
 app.get("/", (req, res) => {
     res.send("Welcome to the Digital Bookshelf API!");
 });
+
+// Connect to MongoDB before starting our server
+await connectDB();
 
 // Start our Express server
 app.listen(port, () => console.log('Server running on port: ' + port));
